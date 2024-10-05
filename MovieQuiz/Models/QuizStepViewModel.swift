@@ -5,8 +5,8 @@
 //  Created by  Дмитрий on 06.09.2024.
 //
 
-import Foundation
 import UIKit
+
 
 // для состояния "Вопрос показан"
 struct QuizStepViewModel {
@@ -15,15 +15,6 @@ struct QuizStepViewModel {
   let questionNumber: String
 }
 
-// для состояния "Результат квиза"
-struct QuizResultsViewModel {
-  let title: String
-  let text: String
-  let buttonText: String
-}
 
-struct QuizQuestion {
-    let image: String
-    let text: String
-    let correctAnswer: Bool
-}
+
+

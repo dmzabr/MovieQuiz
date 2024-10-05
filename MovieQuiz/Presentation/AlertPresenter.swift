@@ -9,18 +9,24 @@ import UIKit
 
 
 class AlertPresenter {
-    private weak var delegate : UIViewController?
+     weak var delegate: AlertPresenterDelegate?
+     weak var viewController: UIViewController?
+     init(viewController: UIViewController) {
+         self.viewController = viewController
+     }
     
-    func showResultsAlert(model: AlertModel) {
+    func showResultsAlert(with model: AlertModel?) {
         let alert = UIAlertController(
-                    title:  model.title,
-                    message: model.message,
-                    preferredStyle: .alert)
-        let action = UIAlertAction(title:  model.buttonText, style: .default) {  _  in
-            model.completion()
+            title: model?.title,
+            message: model?.message,
+            preferredStyle: .alert)
+                
+        let action = UIAlertAction(title: model?.buttonText, style: .default) {[weak self] _ in
+            model?.completion?()
+            self?.delegate?.restartQuiz()
         }
-        alert.addAction(action)
-        delegate?.present(alert, animated: true, completion: nil)
+            alert.addAction(action)
+            viewController?.present(alert, animated: true, completion: nil)
         
-    }
+   }
 }
