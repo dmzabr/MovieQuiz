@@ -21,3 +21,9 @@ struct QuizResultsViewModel {
   let text: String
   let buttonText: String
 }
+
+struct QuizQuestion {
+    let image: String
+    let text: String
+    let correctAnswer: Bool
+}
