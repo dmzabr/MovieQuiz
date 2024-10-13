@@ -8,14 +8,14 @@
 import UIKit
 
 
-class AlertPresenter {
+final class AlertPresenter {
      weak var delegate: AlertPresenterDelegate?
      weak var viewController: UIViewController?
      init(viewController: UIViewController) {
          self.viewController = viewController
      }
     
-    func showResultsAlert(with model: AlertModel?) {
+    func show(with model: AlertModel?) {
         let alert = UIAlertController(
             title: model?.title,
             message: model?.message,
