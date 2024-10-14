@@ -55,7 +55,6 @@ extension StatisticService: StatisticServiceProtocol {
         }
     }
     
-    
     private enum Keys: String {
         case correct
         case gamesCount
