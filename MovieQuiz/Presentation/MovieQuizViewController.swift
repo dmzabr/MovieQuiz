@@ -5,15 +5,12 @@ import Foundation
 final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, AlertPresenterDelegate {
     // MARK: - Lifecycle
 
-    
-    private let questionsAmount: Int = 10
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
     private var alertPresenter: AlertPresenter?
-    private var currentQuestionIndex = 0
     private var correctAnswers = 0
     private var statisticService: StatisticServiceProtocol = StatisticService()
-    
+    private var presenter = MovieQuizPresenter()
     
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var textLabel: UILabel!
@@ -55,14 +52,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         }
         showAnswerResult(isCorrect: answer == currentQuestion.correctAnswer)
     }
-
-    private func convert(model: QuizQuestion) -> QuizStepViewModel {
-        let questionStep = QuizStepViewModel(
-            image: UIImage(data: model.image) ?? UIImage(),
-            question: model.text,
-            questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
-        return questionStep
-    }
     
     private func show(quiz step: QuizStepViewModel) {
         imageView.image = step.image
@@ -92,10 +81,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     }
     
     private func showNextQuestionOrResults() {
-        if currentQuestionIndex == questionsAmount - 1 {
+        if presenter.isLastQUestion() {
             let currentDate = Date()
             let gameResult = GameResult(correct: correctAnswers,
-                                        total: questionsAmount,
+                                        total: presenter.questionsAmount,
                                         date: currentDate)
             statisticService.store(currentGame: gameResult)
             
@@ -117,7 +106,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
                 buttonText: "Сыграть ещё раз")
             show(quiz: viewModel)
         } else {
-            currentQuestionIndex += 1
+            presenter.switchToNextQuestion()
             
             self.questionFactory?.requestNextQuestion()
         }
@@ -127,14 +116,16 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         let alert = AlertModel(
               title: result.title,
               message: result.text,
-              buttonText:  result.buttonText){[weak self] in
+              buttonText:  result.buttonText,
+              accessibilityIdentifier: "endingAlert"){[weak self] in
                   
                   guard let self = self else {return}
-                  self.currentQuestionIndex = 0
+                  self.presenter.resetQuestionIndex()
                   self.correctAnswers = 0
                   self.questionFactory?.requestNextQuestion()
                   
               }
+        
         alertPresenter?.show(with: alert)
     }
     
@@ -144,7 +135,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         }
 
         currentQuestion = question
-        let viewModel = convert(model: question)
+        let viewModel = presenter.convert(model: question)
         
         DispatchQueue.main.async { [weak self] in
             self?.show(quiz: viewModel)
@@ -152,7 +143,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     }
     
     func restartQuiz() {
-        currentQuestionIndex = 0
+        self.presenter.resetQuestionIndex()
         correctAnswers = 0
         
         questionFactory?.requestNextQuestion()
@@ -171,10 +162,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         
         let model = AlertModel(title: "Ошибка",
                                message: message,
-                               buttonText: "Попробовать еще раз") { [weak self] in
+                               buttonText: "Попробовать еще раз", accessibilityIdentifier: "errorAlert") { [weak self] in
             guard let self = self else { return }
             
-            self.currentQuestionIndex = 0
+            self.presenter.resetQuestionIndex()
             self.correctAnswers = 0
             
             self.questionFactory?.requestNextQuestion()
