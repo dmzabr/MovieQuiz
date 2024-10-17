@@ -82,6 +82,7 @@ final class MovieQuizUITests: XCTestCase {
         alert.buttons.firstMatch.tap()
         sleep(2)
         
+        XCTAssertFalse(alert.exists)
         let indexLabel = app.staticTexts["Index"]
         XCTAssertEqual(indexLabel.label, "1/10")
     }

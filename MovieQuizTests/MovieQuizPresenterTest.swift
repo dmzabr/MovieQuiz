@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 @testable import MovieQuiz
 
-final class MovieQuizViewControllerMock: MovieQuizViewControllerProtocol {
+final class MovieQuizViewControllerMock: UIViewController, MovieQuizViewControllerProtocol {
     var noButton: UIButton!
     
     var yesButton: UIButton!
