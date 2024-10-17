@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol AlertPresenterProtocol{
     func restartQuiz(with model: AlertModel)
 }

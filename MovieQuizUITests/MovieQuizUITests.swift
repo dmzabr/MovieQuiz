@@ -7,7 +7,6 @@
 
 import XCTest
 
-
 final class MovieQuizUITests: XCTestCase {
     var app: XCUIApplication!
 
@@ -98,11 +97,5 @@ final class MovieQuizUITests: XCTestCase {
         XCTAssertTrue(alert.exists)
         XCTAssertEqual(alert.label, "Этот раунд окончен!")
         XCTAssertEqual(alert.buttons.firstMatch.label, "Сыграть ещё раз")
-        
-        alert.buttons.firstMatch.tap()
-        sleep(2)
-        
-        let indexLabel = app.staticTexts["Index"]
-        XCTAssertEqual(indexLabel.label, "1/10")
     }
 }

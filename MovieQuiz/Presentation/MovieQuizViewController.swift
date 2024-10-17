@@ -1,7 +1,6 @@
 import UIKit
 import Foundation
 
-
 final class MovieQuizViewController: UIViewController,  MovieQuizViewControllerProtocol {
     
     // MARK: - Lifecycle

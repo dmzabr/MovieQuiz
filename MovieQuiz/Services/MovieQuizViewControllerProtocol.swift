@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-
-protocol MovieQuizViewControllerProtocol: AnyObject {
+protocol MovieQuizViewControllerProtocol: AnyObject, UIViewController {
     var noButton: UIButton! { get }
     var yesButton: UIButton! { get }
     var imageView: UIImageView! { get }

@@ -7,9 +7,7 @@
 
 import UIKit
 
-
-
-class MovieQuizPresenter: QuestionFactoryDelegate{
+final class MovieQuizPresenter: QuestionFactoryDelegate{
     private let statisticService: StatisticServiceProtocol!
     private var questionFactory: QuestionFactoryProtocol?
     private weak var viewController: MovieQuizViewControllerProtocol?
@@ -28,9 +26,7 @@ class MovieQuizPresenter: QuestionFactoryDelegate{
         questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
         questionFactory?.loadData()
         viewController.showLoadingIndicator()
-        if let viewController = viewController as? UIViewController {
-            alertPresenter = AlertPresenter(viewController: viewController)
-        }
+        alertPresenter = AlertPresenter(viewController: viewController)
     }
     
     func convert(model: QuizQuestion) -> QuizStepViewModel {
@@ -101,8 +97,6 @@ class MovieQuizPresenter: QuestionFactoryDelegate{
             self.questionFactory?.requestNextQuestion()
         }
     }
-    
-  
     
     func showAnswerResult(isCorrect: Bool) {
         if isCorrect {
