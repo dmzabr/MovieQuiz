@@ -39,6 +39,7 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="1/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyl-mh-Sgr" userLabel="Index Label">
                                                 <rect key="frame" x="299" y="0.0" width="36" height="41.666666666666664"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Index"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
                                                 <color key="textColor" name="YP White"/>
                                                 <nil key="highlightedColor"/>
@@ -48,6 +49,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GAf-Vu-SbX" userLabel="Preview Imge">
                                         <rect key="frame" x="0.0" y="61.666666666666657" width="335" height="502.33333333333337"/>
                                         <color key="backgroundColor" name="YP White"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Poster"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="GAf-Vu-SbX" secondAttribute="height" multiplier="2:3" id="4Vs-Qe-U1D"/>
                                         </constraints>
@@ -63,6 +65,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fd-SY-wJB" userLabel="No Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="157.66666666666666" height="60"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="No"/>
                                                 <color key="tintColor" name="YP Black"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Нет">
@@ -72,11 +75,12 @@
                                                     <fontDescription key="titleFontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="noButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S6l-a2-PJ0"/>
+                                                    <action selector="noButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="daN-eh-Tvg"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOX-py-p9j" userLabel="Yes Button">
                                                 <rect key="frame" x="177.66666666666663" y="0.0" width="157.33333333333337" height="60"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Yes"/>
                                                 <color key="tintColor" name="YP Black"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Да">
@@ -86,7 +90,7 @@
                                                     <fontDescription key="titleFontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="yesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G5S-WT-tx9"/>
+                                                    <action selector="yesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="La0-ba-I0A"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -115,9 +119,9 @@
                         <outlet property="activityIndicator" destination="6dJ-Hg-vFZ" id="QGe-t0-1xQ"/>
                         <outlet property="counterLable" destination="zyl-mh-Sgr" id="6wp-Hr-1EL"/>
                         <outlet property="imageView" destination="GAf-Vu-SbX" id="joA-Ay-bby"/>
-                        <outlet property="noButton" destination="5fd-SY-wJB" id="ZMs-Qe-zLi"/>
+                        <outlet property="noButton" destination="5fd-SY-wJB" id="jV5-9f-tDg"/>
                         <outlet property="textLabel" destination="mvT-Mf-845" id="MqO-0D-OKN"/>
-                        <outlet property="yesButton" destination="YOX-py-p9j" id="X9H-RZ-5mi"/>
+                        <outlet property="yesButton" destination="YOX-py-p9j" id="GZx-Kg-foM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

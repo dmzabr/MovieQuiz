@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 final class AlertPresenter {
      weak var delegate: AlertPresenterDelegate?
      weak var viewController: UIViewController?
@@ -19,7 +18,11 @@ final class AlertPresenter {
         let alert = UIAlertController(
             title: model?.title,
             message: model?.message,
-            preferredStyle: .alert)
+            preferredStyle: .alert
+        )
+        
+        alert.view.accessibilityIdentifier = model?.accessibilityIdentifier
+        
                 
         let action = UIAlertAction(title: model?.buttonText, style: .default) {[weak self] _ in
             model?.completion?()
